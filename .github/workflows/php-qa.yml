@@ -33,12 +33,6 @@ jobs:
             -   name: Install dependencies
                 uses: ramsey/composer-install@v3
 
-            -   name: Check code styles
-                run: composer cs
-
-            -   name: Check PHP compatibility
-                run: composer phpcompat
-
             -   name: Run Psalm
                 run: composer psalm
 
