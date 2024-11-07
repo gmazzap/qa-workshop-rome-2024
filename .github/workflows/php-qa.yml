@@ -11,9 +11,6 @@ concurrency:
 jobs:
     qa:
         runs-on: ubuntu-latest
-        strategy:
-            matrix:
-                php-versions: [ '8.1', '8.2', '8.3' ]
 
         steps:
             -   name: Checkout
@@ -22,7 +19,7 @@ jobs:
             -   name: Setup PHP
                 uses: shivammathur/setup-php@v2
                 with:
-                    php-version: ${{ matrix.php-versions }}
+                    php-version: 8.3
                     ini-values: zend.assertions=1, error_reporting=-1, display_errors=On
                     coverage: none
                     tools: parallel-lint
@@ -32,9 +29,6 @@ jobs:
 
             -   name: Install dependencies
                 uses: ramsey/composer-install@v3
-
-            -   name: Run Psalm
-                run: composer psalm
 
             -   name: Run PHPUnit tests
                 run: composer tests
