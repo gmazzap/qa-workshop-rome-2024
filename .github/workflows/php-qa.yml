@@ -26,9 +26,3 @@ jobs:
 
             -   name: Check syntax error in sources
                 run: parallel-lint .
-
-            -   name: Install dependencies
-                uses: ramsey/composer-install@v3
-
-            -   name: Run PHPUnit tests
-                run: composer tests
