@@ -1,0 +1,46 @@
+name: PHP Quality Assurance
+
+on:
+    push:
+    workflow_dispatch:
+
+concurrency:
+    group: ${{ github.workflow }}-${{ github.ref }}
+    cancel-in-progress: true
+
+jobs:
+    qa:
+        runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                php-versions: [ '8.1', '8.2', '8.3' ]
+
+        steps:
+            -   name: Checkout
+                uses: actions/checkout@v4
+
+            -   name: Setup PHP
+                uses: shivammathur/setup-php@v2
+                with:
+                    php-version: ${{ matrix.php-versions }}
+                    ini-values: zend.assertions=1, error_reporting=-1, display_errors=On
+                    coverage: none
+                    tools: parallel-lint
+
+            -   name: Check syntax error in sources
+                run: parallel-lint .
+
+            -   name: Install dependencies
+                uses: ramsey/composer-install@v3
+
+            -   name: Check code styles
+                run: composer cs
+
+            -   name: Check PHP compatibility
+                run: composer phpcompat
+
+            -   name: Run Psalm
+                run: composer psalm
+
+            -   name: Run PHPUnit tests
+                run: composer tests

@@ -2,22 +2,22 @@
 
 declare( strict_types=1 );
 
-$testsDir  = str_replace( '\\', '/', __DIR__ );
-$libDir    = dirname( $testsDir, 2 );
-$vendorDir = "{$libDir}/vendor";
-$autoload  = "{$vendorDir}/autoload.php";
+$tests_dir  = str_replace( '\\', '/', __DIR__ );
+$lib_dir    = dirname( $tests_dir, 2 );
+$vendor_dir = "{$lib_dir}/vendor";
+$autoload   = "{$vendor_dir}/autoload.php";
 
 if ( ! is_file( $autoload ) ) {
 	die( 'Please install via Composer before running tests.' );
 }
 
-putenv( 'TESTS_DIR=' . $testsDir );
-putenv( 'LIB_DIR=' . $libDir );
-putenv( 'VENDOR_DIR=' . $vendorDir );
+putenv( 'TESTS_DIR=' . $tests_dir );
+putenv( 'LIB_DIR=' . $lib_dir );
+putenv( 'VENDOR_DIR=' . $vendor_dir );
 
 error_reporting( E_ALL ); // phpcs:ignore
 
-require_once "{$libDir}/vendor/antecedent/patchwork/Patchwork.php";
+require_once "{$lib_dir}/vendor/antecedent/patchwork/Patchwork.php";
 
 if ( ! defined( 'PHPUNIT_COMPOSER_INSTALL' ) ) {
 	define( 'PHPUNIT_COMPOSER_INSTALL', $autoload );
@@ -25,7 +25,7 @@ if ( ! defined( 'PHPUNIT_COMPOSER_INSTALL' ) ) {
 }
 
 if ( ! defined( 'ABSPATH' ) ) {
-	define( 'ABSPATH', "{$vendorDir}/roots/wordpress-no-content/" );
+	define( 'ABSPATH', "{$vendor_dir}/roots/wordpress-no-content/" );
 }
 
-unset( $testsDir, $libDir, $vendorDir, $autoload );
+unset( $tests_dir, $lib_dir, $vendor_dir, $autoload );

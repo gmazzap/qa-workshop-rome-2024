@@ -1,0 +1,55 @@
+{
+  "name": "giuseppe/qa-workshop-rome-2024",
+  "type": "wordpress-plugin",
+  "license": "GPL-2.0-or-later",
+  "authors": [
+    {
+      "name": "Giuseppe Mazzapica",
+      "email": "giuseppe.mazzapica@gmail.com"
+    }
+  ],
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://raw.githubusercontent.com/inpsyde/wp-stubs/main",
+      "only": [
+        "inpsyde/wp-stubs-versions"
+      ]
+    }
+  ],
+  "require": {
+    "php": ">=8.1"
+  },
+  "require-dev": {
+    "squizlabs/php_codesniffer": "^3.10",
+    "wp-coding-standards/wpcs": "^3.1",
+    "phpcompatibility/phpcompatibility-wp": "^2.1",
+    "vimeo/psalm": "^5.26",
+    "phpunit/phpunit": "^10.5",
+    "brain/monkey": "^2.6",
+    "roots/wordpress-no-content": "*",
+    "inpsyde/wp-stubs-versions": "dev-latest"
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Gmazzap\\CoreDays24\\": "tests/php-unit/cases/"
+    }
+  },
+  "scripts": {
+    "cs": "@php ./vendor/squizlabs/php_codesniffer/bin/phpcs",
+    "phpcompat": "@php ./vendor/squizlabs/php_codesniffer/bin/phpcs -ps . --standard=PHPCompatibilityWP --ignore=*/vendor/* --extensions=php --basepath=./ --runtime-set testVersion 8.1-",
+    "psalm": "@php ./vendor/vimeo/psalm/psalm --no-suggestions --report-show-info=false --find-unused-psalm-suppress --no-diff --no-cache --no-file-cache --output-format=compact",
+    "tests": "@php ./vendor/phpunit/phpunit/phpunit --no-coverage",
+    "qa": [
+      "@cs",
+      "@phpcompat",
+      "@psalm",
+      "@tests"
+    ]
+  },
+  "config": {
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    }
+  }
+}
