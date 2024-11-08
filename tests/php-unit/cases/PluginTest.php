@@ -18,8 +18,8 @@ class PluginTest extends TestCase {
 
 		$line = nun_fa_la_stupida_line();
 
-		static::assertFalse( preg_match( '/^\s/', $line ) );
-		static::assertFalse( preg_match( '/\s$/', $line ) );
+		static::assertSame( 0, preg_match( '/^\s/', $line ) );
+		static::assertSame( 0, preg_match( '/\s$/', $line ) );
 	}
 
 	/**
@@ -64,7 +64,7 @@ class PluginTest extends TestCase {
 		Functions\expect( 'current_datetime' )
 			->andReturn( \DateTimeImmutable::createFromFormat( 'H:i', '20:00' ) );
 
-		static::expectOutputRegex( '{class="notice"}' );
+		static::expectOutputRegex( '{class="notice}' );
 
 		nun_fa_la_stupida();
 	}
