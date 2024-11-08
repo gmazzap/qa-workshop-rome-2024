@@ -55,17 +55,13 @@ function is_evening(): bool {
 /**
  * Add a line from 'Roma nun fa la stupida stasera' lyrics into admin notices.
  */
-function nun_fa_la_stupida() {
-	if (!is_evening()) {
+function nun_fa_la_stupida(): void {
+	if ( ! is_evening() ) {
 		return;
 	}
 
 	$is_it = str_starts_with( get_user_locale(), 'it_' );
-	$line = nun_fa_la_stupida_line();
-
-	if ( 0 === $line ) {
-		return;
-	}
+	$line  = nun_fa_la_stupida_line();
 
 	?>
 	<div id="nun_fa_la_stupida" class="notice is-dismissible">

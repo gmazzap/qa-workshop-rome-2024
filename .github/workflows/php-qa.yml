@@ -29,3 +29,12 @@ jobs:
 
             -   name: Check PHPCS
                 run: composer cs
+
+            -   name: Check PHP Compat
+                run: composer phpcompat
+
+            -   name: Psalm
+                run: composer psalm
+
+            -   name: Run tests
+                run: composer tests

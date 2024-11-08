@@ -14,4 +14,12 @@
     <rule ref="WordPress.PHP.DiscouragedPHPFunctions.runtime_configuration_putenv">
         <exclude-pattern>*/tests/php-unit/*</exclude-pattern>
     </rule>
+
+    <rule ref="WordPress.Files">
+        <exclude-pattern>*/tests/php-unit/*</exclude-pattern>
+    </rule>
+
+    <rule ref="Squiz.Commenting">
+        <exclude name="Squiz.Commenting.FileComment" />
+    </rule>
 </ruleset>
