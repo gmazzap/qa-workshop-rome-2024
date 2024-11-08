@@ -24,6 +24,9 @@ jobs:
                     coverage: none
                     tools: parallel-lint
 
+            -   name: Install dependencies
+                uses: ramsey/composer-install@v3
+
             -   name: Check syntax error in sources
                 run: parallel-lint .
 
