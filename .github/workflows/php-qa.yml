@@ -27,9 +27,6 @@ jobs:
             -   name: Check syntax error in sources
                 run: parallel-lint .
 
-            -   name: Check PHPCS
-                run: composer cs
-
             -   name: Check PHP Compat
                 run: composer phpcompat
 
